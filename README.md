@@ -1,6 +1,6 @@
 # TurtleBot 4 Simulation: SLAM Toolbox, AMCL và Nav2 (ROS 2 Humble)
 
-Bài thực hành 04, môn Tương tác người - Robot (RBE3053). Mô phỏng TurtleBot 4 trong Ignition Gazebo Fortress,
+Mô phỏng TurtleBot 4 trong Ignition Gazebo Fortress,
 dựng bản đồ bằng SLAM Toolbox, lưu bản đồ, định vị lại bằng AMCL và dẫn đường tự động bằng Nav2, quan sát trên RViz2.
 
 Package `tb4_lab` không viết lại simulator hay bộ điều khiển. Các launch chỉ gọi lại launch chính thức của
