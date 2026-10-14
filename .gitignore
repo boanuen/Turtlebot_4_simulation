@@ -1,0 +1,9 @@
+build/
+install/
+log/
+__pycache__/
+*.aux
+*.log
+*.out
+*.synctex*
+*.xwd

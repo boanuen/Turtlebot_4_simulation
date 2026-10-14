@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.8)
+project(tb4_lab)
+find_package(ament_cmake REQUIRED)
+install(DIRECTORY launch maps config DESTINATION share/${PROJECT_NAME})
+install(PROGRAMS scripts/save_map.sh scripts/xacro scripts/sim_setup.sh scripts/scan_delay.py DESTINATION lib/${PROJECT_NAME})
+ament_package()

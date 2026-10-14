@@ -1,0 +1,11 @@
+#!/bin/bash
+# Bọc 'xacro' khi chạy sim, chỉ có hiệu lực trong sim.launch.py:
+#  - bỏ cảm biến cliff và IR: render phần mềm làm cliff đọc sai, reflex cliff khóa lệnh /cmd_vel; bài không dùng
+#  - RPLIDAR 62 Hz -> 10 Hz (bằng tần số thật), tầm đo 12 m -> 5 m (tia xa và chếch bị aliasing khi render phần
+#    mềm, tạo vạch nhiễu cạnh tường trên bản đồ), camera 30 Hz -> 1 Hz: giảm tải render CPU của WSL2
+PATH=${PATH#"$(dirname "$0"):"}
+xacro "$@" | perl -0pe '
+  s#<sensor name="(cliff|ir_intensity)_[a-z_]+" type="gpu_lidar">.*?</sensor>##gs;
+  s#(<sensor name="rplidar" type="gpu_lidar">\s*<update_rate>)[\d.]+#${1}10#;
+  s#(<sensor name="rplidar" type="gpu_lidar">.*?<max>)[\d.]+#${1}5.0#s;
+  s#(<sensor name="rgbd_camera".*?<update_rate>)[\d.]+#${1}1#s'
